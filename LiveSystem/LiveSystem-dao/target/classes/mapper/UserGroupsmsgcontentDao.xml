@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.UserGroupsmsgcontentDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.UserGroupsmsgcontent">
+    <id column="GM_ID" jdbcType="INTEGER" property="gmId" />
+    <result column="GM_FromID" jdbcType="INTEGER" property="gmFromid" />
+    <result column="GM_Content" jdbcType="VARCHAR" property="gmContent" />
+    <result column="GM_CreateTime" jdbcType="TIMESTAMP" property="gmCreatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GM_ID, GM_FromID, GM_Content, GM_CreateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_groupsmsgcontent
+    where GM_ID = #{gmId,jdbcType=INTEGER}
+  </select>
+
+  <select id="findMsgByGid" resultType="org.example.LiveSystem.entity.UserGroupsmsgcontent">
+    select
+      user_groupsmsgcontent.GM_ID as GM_ID, GM_FromID, GM_Content, GM_CreateTime
+    from user_groupsmsgcontent,user_groupsmsgtouser
+    where
+          user_groupsmsgcontent.GM_ID = user_groupsmsgtouser.GM_GroupMessageID
+          and
+          user_groupsmsgtouser.GM_UserID = #{gid}
+          <if test="lastGMID != null">
+          and #{lastGMID} > user_groupsmsgcontent.GM_ID
+          </if>
+    order by user_groupsmsgcontent.GM_ID asc
+--     limit 15
+  </select>
+
+    <select id="getLastMsg" resultType="java.lang.String">
+      select
+        GM_Content
+      from user_groupsmsgcontent,user_groupsmsgtouser
+      where user_groupsmsgcontent.GM_ID = user_groupsmsgtouser.GM_GroupMessageID
+      order by GM_CreateTime desc
+      limit 1
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_groupsmsgcontent
+    where GM_ID = #{gmId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="GM_ID" keyProperty="gmId" parameterType="org.example.LiveSystem.entity.UserGroupsmsgcontent" useGeneratedKeys="true">
+    insert into user_groupsmsgcontent (GM_FromID, GM_Content, GM_CreateTime)
+    values (#{gmFromid,jdbcType=INTEGER}, #{gmContent,jdbcType=VARCHAR}, #{gmCreatetime,jdbcType=TIMESTAMP})
+  </insert>
+<!--  @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")-->
+  <insert id="insertSelective" keyColumn="GM_ID" keyProperty="gmId" parameterType="org.example.LiveSystem.entity.UserGroupsmsgcontent" useGeneratedKeys="true">
+    insert into user_groupsmsgcontent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gmFromid != null">
+        `GM_FromID`,
+      </if>
+      <if test="gmContent != null">
+        `GM_Content`,
+      </if>
+      <if test="gmCreatetime != null">
+        `GM_CreateTime`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gmFromid != null">
+        #{gmFromid,jdbcType=INTEGER},
+      </if>
+      <if test="gmContent != null">
+        #{gmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="gmCreatetime != null">
+        #{gmCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.UserGroupsmsgcontent">
+    update user_groupsmsgcontent
+    <set>
+      <if test="gmFromid != null">
+        `GM_FromID` = #{gmFromid,jdbcType=INTEGER},
+      </if>
+      <if test="gmContent != null">
+        `GM_Content` = #{gmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="gmCreatetime != null">
+        `GM_CreateTime` = #{gmCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GM_ID = #{gmId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.UserGroupsmsgcontent">
+    update user_groupsmsgcontent
+    set `GM_FromID` = #{gmFromid,jdbcType=INTEGER},
+      `GM_Content` = #{gmContent,jdbcType=VARCHAR},
+      `GM_CreateTime` = #{gmCreatetime,jdbcType=TIMESTAMP}
+    where GM_ID = #{gmId,jdbcType=INTEGER}
+  </update>
+</mapper>

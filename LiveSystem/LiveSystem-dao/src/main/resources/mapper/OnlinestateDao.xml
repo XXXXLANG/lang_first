@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.OnlinestateDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.Onlinestate">
+    <id column="O_ID" jdbcType="INTEGER" property="oId" />
+    <result column="O_UserID" jdbcType="INTEGER" property="oUserid" />
+    <result column="O_Client" jdbcType="VARCHAR" property="oClient" />
+    <result column="O_State" jdbcType="INTEGER" property="oState" />
+    <result column="O_Datatime" jdbcType="TIMESTAMP" property="oDatatime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    O_ID, O_UserID, O_Client, O_State, O_Datatime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from onlinestate
+    where O_ID = #{oId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from onlinestate
+    where O_ID = #{oId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="O_ID" keyProperty="oId" parameterType="org.example.LiveSystem.entity.Onlinestate" useGeneratedKeys="true">
+    insert into onlinestate (O_UserID, O_Client, O_State, 
+      O_Datatime)
+    values (#{oUserid,jdbcType=INTEGER}, #{oClient,jdbcType=VARCHAR}, #{oState,jdbcType=INTEGER}, 
+      #{oDatatime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="O_ID" keyProperty="oId" parameterType="org.example.LiveSystem.entity.Onlinestate" useGeneratedKeys="true">
+    insert into onlinestate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oUserid != null">
+        O_UserID,
+      </if>
+      <if test="oClient != null">
+        O_Client,
+      </if>
+      <if test="oState != null">
+        O_State,
+      </if>
+      <if test="oDatatime != null">
+        O_Datatime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oUserid != null">
+        #{oUserid,jdbcType=INTEGER},
+      </if>
+      <if test="oClient != null">
+        #{oClient,jdbcType=VARCHAR},
+      </if>
+      <if test="oState != null">
+        #{oState,jdbcType=INTEGER},
+      </if>
+      <if test="oDatatime != null">
+        #{oDatatime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.Onlinestate">
+    update onlinestate
+    <set>
+      <if test="oUserid != null">
+        O_UserID = #{oUserid,jdbcType=INTEGER},
+      </if>
+      <if test="oClient != null">
+        O_Client = #{oClient,jdbcType=VARCHAR},
+      </if>
+      <if test="oState != null">
+        O_State = #{oState,jdbcType=INTEGER},
+      </if>
+      <if test="oDatatime != null">
+        O_Datatime = #{oDatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where O_ID = #{oId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateState" parameterType="org.example.LiveSystem.entity.Onlinestate">
+    update onlinestate
+    <set>
+      <if test="oClient != null">
+        O_Client = #{oClient,jdbcType=VARCHAR},
+      </if>
+      <if test="oState != null">
+        O_State = #{oState,jdbcType=INTEGER},
+      </if>
+      <if test="oDatatime != null">
+        O_Datatime = #{oDatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where O_UserID = #{oUserid,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.Onlinestate">
+    update onlinestate
+    set O_UserID = #{oUserid,jdbcType=INTEGER},
+      O_Client = #{oClient,jdbcType=VARCHAR},
+      O_State = #{oState,jdbcType=INTEGER},
+      O_Datatime = #{oDatatime,jdbcType=TIMESTAMP}
+    where O_ID = #{oId,jdbcType=INTEGER}
+  </update>
+</mapper>

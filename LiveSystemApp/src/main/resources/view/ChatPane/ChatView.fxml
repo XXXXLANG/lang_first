@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="bgColor" onMouseClicked="#ChatAction" prefHeight="72.0" prefWidth="344.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.ChatPane.ChatViewController">
+   <children>
+      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image fx:id="FriendFace" url="@../../img/225默认头像.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="FriendName" layoutX="84.0" layoutY="14.0" text="昵称" />
+      <Label fx:id="Msg" layoutX="84.0" layoutY="38.0" prefHeight="24.0" prefWidth="195.0" text="聊天消息！" />
+      <Label fx:id="Sendtime" layoutX="230.0" layoutY="14.0" maxHeight="24.0" maxWidth="102.0" prefHeight="24.0" prefWidth="102.0" text="2022-00-00" />
+   </children>
+</AnchorPane>

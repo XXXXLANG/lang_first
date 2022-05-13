@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.FriendsDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.Friends">
+    <id column="F_ID" jdbcType="INTEGER" property="fId" />
+    <result column="F_UserID" jdbcType="INTEGER" property="fUserid" />
+    <result column="F_FriendID" jdbcType="INTEGER" property="fFriendid" />
+    <result column="F_AliasUser" jdbcType="VARCHAR" property="fAliasuser" />
+    <result column="F_AliasFriend" jdbcType="VARCHAR" property="fAliasfriend" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    F_ID, F_UserID, F_FriendID, F_AliasUser, F_AliasFriend
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from friends
+    where F_ID = #{fId,jdbcType=INTEGER}
+  </select>
+
+    <select id="listFriendsBy" resultType="org.example.LiveSystem.entity.Friends">
+      select F_ID as fId,F_FriendID as fFriendid, F_AliasUser as fAliasuser
+      from Friends
+      <where>
+        F_UserID = #{id}
+      </where>
+      union all
+      select F_ID as fId, F_UserID as fFriendid, F_AliasFriend as fAliasuser
+      from Friends
+      <where>
+        F_FriendID = #{id}
+      </where>
+    </select>
+
+    <select id="getFriendName" resultType="java.lang.String">
+      select F_AliasUser
+      from Friends
+      where F_UserID = #{userID} and F_FriendID = #{friendID}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from friends
+    where F_ID = #{fId,jdbcType=INTEGER}
+  </delete>
+
+    <delete id="deleteFriend">
+      delete from friends
+      where F_UserID = #{fid} and F_FriendID = #{uid}
+            or F_UserID = #{uid} and F_FriendID = #{fid}
+    </delete>
+
+    <insert id="insert" keyColumn="F_ID" keyProperty="fId" parameterType="org.example.LiveSystem.entity.Friends" useGeneratedKeys="true">
+    insert into friends (F_UserID, F_FriendID, F_AliasUser, 
+      F_AliasFriend)
+    values (#{fUserid,jdbcType=INTEGER}, #{fFriendid,jdbcType=INTEGER}, #{fAliasuser,jdbcType=VARCHAR}, 
+      #{fAliasfriend,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="F_ID" keyProperty="fId" parameterType="org.example.LiveSystem.entity.Friends" useGeneratedKeys="true">
+    insert into friends
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fUserid != null">
+        F_UserID,
+      </if>
+      <if test="fFriendid != null">
+        F_FriendID,
+      </if>
+      <if test="fAliasuser != null">
+        F_AliasUser,
+      </if>
+      <if test="fAliasfriend != null">
+        F_AliasFriend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fUserid != null">
+        #{fUserid,jdbcType=INTEGER},
+      </if>
+      <if test="fFriendid != null">
+        #{fFriendid,jdbcType=INTEGER},
+      </if>
+      <if test="fAliasuser != null">
+        #{fAliasuser,jdbcType=VARCHAR},
+      </if>
+      <if test="fAliasfriend != null">
+        #{fAliasfriend,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.Friends">
+    update friends
+    <set>
+      <if test="fUserid != null">
+        F_UserID = #{fUserid,jdbcType=INTEGER},
+      </if>
+      <if test="fFriendid != null">
+        F_FriendID = #{fFriendid,jdbcType=INTEGER},
+      </if>
+      <if test="fAliasuser != null">
+        F_AliasUser = #{fAliasuser,jdbcType=VARCHAR},
+      </if>
+      <if test="fAliasfriend != null">
+        F_AliasFriend = #{fAliasfriend,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_ID = #{fId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.Friends">
+    update friends
+    set F_UserID = #{fUserid,jdbcType=INTEGER},
+      F_FriendID = #{fFriendid,jdbcType=INTEGER},
+      F_AliasUser = #{fAliasuser,jdbcType=VARCHAR},
+      F_AliasFriend = #{fAliasfriend,jdbcType=VARCHAR}
+    where F_ID = #{fId,jdbcType=INTEGER}
+  </update>
+</mapper>

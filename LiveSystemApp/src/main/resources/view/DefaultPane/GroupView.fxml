@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.DefaultPane.GroupViewController">
+    <children>
+        <AnchorPane onMouseClicked="#GroupAction" prefHeight="72.0" prefWidth="330.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: black;">
+            <children>
+                <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image fx:id="GroupIcon" url="@../../img/225默认头像.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="GroupName" layoutX="80.0" layoutY="24.0" prefHeight="24.0" prefWidth="73.0" text="昵称" />
+                <ImageView fx:id="msgTab" fitHeight="30.0" fitWidth="28.0" layoutX="151.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../img/消息提醒.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

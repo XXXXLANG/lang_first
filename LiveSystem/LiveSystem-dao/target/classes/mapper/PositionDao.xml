@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.PositionDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.Position">
+    <id column="SP_ID" jdbcType="INTEGER" property="spId" />
+    <result column="SP_Name" jdbcType="VARCHAR" property="spName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SP_ID, SP_Name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from position
+    where SP_ID = #{spId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from position
+    where SP_ID = #{spId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="SP_ID" keyProperty="spId" parameterType="org.example.LiveSystem.entity.Position" useGeneratedKeys="true">
+    insert into position (SP_Name)
+    values (#{spName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="SP_ID" keyProperty="spId" parameterType="org.example.LiveSystem.entity.Position" useGeneratedKeys="true">
+    insert into position
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="spName != null">
+        SP_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="spName != null">
+        #{spName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.Position">
+    update position
+    <set>
+      <if test="spName != null">
+        SP_Name = #{spName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SP_ID = #{spId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.Position">
+    update position
+    set SP_Name = #{spName,jdbcType=VARCHAR}
+    where SP_ID = #{spId,jdbcType=INTEGER}
+  </update>
+</mapper>

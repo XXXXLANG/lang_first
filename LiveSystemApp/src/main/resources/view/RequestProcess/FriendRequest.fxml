@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.RequestProcess.FriendRequestController">
+   <top>
+      <AnchorPane prefHeight="60.0" prefWidth="582.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="255.0" layoutY="18.0" text="新的朋友" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="565.0" prefWidth="582.0" style="-fx-background-color: #F5F5F5; -fx-border-color: black; -fx-border-width: 0 0 0 1;" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane layoutX="36.0" layoutY="16.0" prefHeight="563.0" prefWidth="511.0" style="-fx-background-color: white;">
+               <top>
+                  <AnchorPane prefHeight="51.0" prefWidth="539.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="新的好友请求" />
+                     </children>
+                  </AnchorPane>
+               </top>
+               <center>
+                  <ScrollPane prefViewportHeight="512.0" prefViewportWidth="511.0">
+                     <content>
+                        <VBox fx:id="friendRequest" prefHeight="510.0" prefWidth="509.0" style="-fx-background-color: white;" />
+                     </content>
+                  </ScrollPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

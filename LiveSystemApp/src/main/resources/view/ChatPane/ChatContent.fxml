@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="582.0" style="-fx-border-width: 0 0 0 1; -fx-border-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.ChatPane.ChatContentController">
+   <top>
+      <AnchorPane prefHeight="79.0" prefWidth="582.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="FriendName" layoutX="22.0" layoutY="21.0" text="FriendName" />
+            <Button layoutX="542.0" layoutY="42.0" mnemonicParsing="false" onAction="#FriendInfoAction" style="-fx-background-color: white;" text="⇉" textAlignment="CENTER">
+               <font>
+                  <Font size="19.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="157.0" prefWidth="582.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="10.0" prefHeight="137.0" prefWidth="555.0" style="-fx-background-color: white;">
+               <children>
+                  <Button layoutX="475.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#sendInfoAction" prefHeight="28.0" prefWidth="73.0" style="-fx-background-color: #00CD66;" text="发送" AnchorPane.topAnchor="103.0">
+                     <padding>
+                        <Insets bottom="2.0" top="2.0" />
+                     </padding>
+                  </Button>
+                  <TextArea fx:id="ChatInfo" layoutX="7.0" layoutY="24.0" prefHeight="79.0" prefWidth="541.0" style="-fx-border-color: white; -fx-prompt-text-fill: red;" />
+                  <Label fx:id="live" contentDisplay="CENTER" layoutX="521.0" layoutY="2.0" onMouseClicked="#live" prefHeight="25.0" prefWidth="20.0" text="😊" textAlignment="CENTER">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <ScrollPane fx:id="scrollPane" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="chatContent" prefHeight="417.0" prefWidth="578.0" />
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

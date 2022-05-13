@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.CityDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.City">
+    <id column="C_ID" jdbcType="INTEGER" property="cId" />
+    <result column="C_Name" jdbcType="VARCHAR" property="cName" />
+    <result column="C_ProvinceID" jdbcType="INTEGER" property="cProvinceid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    C_ID, C_Name, C_ProvinceID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from city
+    where C_ID = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from city
+    where C_ID = #{cId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="C_ID" keyProperty="cId" parameterType="org.example.LiveSystem.entity.City" useGeneratedKeys="true">
+    insert into city (C_Name, C_ProvinceID)
+    values (#{cName,jdbcType=VARCHAR}, #{cProvinceid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="C_ID" keyProperty="cId" parameterType="org.example.LiveSystem.entity.City" useGeneratedKeys="true">
+    insert into city
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cName != null">
+        C_Name,
+      </if>
+      <if test="cProvinceid != null">
+        C_ProvinceID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cProvinceid != null">
+        #{cProvinceid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.City">
+    update city
+    <set>
+      <if test="cName != null">
+        C_Name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cProvinceid != null">
+        C_ProvinceID = #{cProvinceid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where C_ID = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.City">
+    update city
+    set C_Name = #{cName,jdbcType=VARCHAR},
+      C_ProvinceID = #{cProvinceid,jdbcType=INTEGER}
+    where C_ID = #{cId,jdbcType=INTEGER}
+  </update>
+</mapper>

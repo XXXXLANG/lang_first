@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.DefaultPane.FriendViewController">
+    <children>
+        <AnchorPane onMouseClicked="#FriendAction" prefHeight="72.0" prefWidth="330.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: black;">
+            <children>
+                <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image fx:id="FriendFace" url="@../../img/225默认头像.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="FriendName" layoutX="80.0" layoutY="24.0" prefHeight="24.0" prefWidth="73.0" text="昵称" />
+                <Label fx:id="Position" layoutX="147.0" layoutY="25.0" prefHeight="24.0" prefWidth="45.0" style="-fx-background-color: #d7f4e9;" text="职位" textFill="#438600" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

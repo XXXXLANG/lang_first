@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.UserMsgusertouserDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.UserMsgusertouser">
+    <id column="M_ID" jdbcType="INTEGER" property="mId" />
+    <result column="M_FromUserID" jdbcType="INTEGER" property="mFromuserid" />
+    <result column="M_ToUserID" jdbcType="INTEGER" property="mTouserid" />
+    <result column="M_MSGContent" jdbcType="VARCHAR" property="mMsgcontent" />
+    <result column="M_State" jdbcType="INTEGER" property="mState" />
+    <result column="M_CreateTime" jdbcType="TIMESTAMP" property="mCreatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    M_ID, M_FromUserID, M_ToUserID, M_MSGContent, M_State, M_CreateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_msgusertouser
+    where M_ID = #{mId,jdbcType=INTEGER}
+  </select>
+
+    <select id="findMsgByFidUid" resultType="org.example.LiveSystem.entity.UserMsgusertouser">
+        select
+        <include refid="Base_Column_List" />
+        from user_msgusertouser
+        where ((M_FromUserID = #{fid} and M_ToUserID = #{uid})
+              or (M_FromUserID = #{uid} and M_ToUserID = #{fid}))
+              <if test="lastMID != null">
+              and #{lastMID} > M_ID
+              </if>
+        order by M_ID asc
+--         limit 15
+    </select>
+
+  <select id="getLastMsg" resultType="java.lang.String">
+    select M_MSGContent
+    from user_msgusertouser
+    where (M_FromUserID = #{friendID} and M_ToUserID = #{userID})
+          or (M_FromUserID = #{userID} and M_ToUserID = #{friendID})
+    order by M_ID desc
+    limit 1
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_msgusertouser
+    where M_ID = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="M_ID" keyProperty="mId" parameterType="org.example.LiveSystem.entity.UserMsgusertouser" useGeneratedKeys="true">
+    insert into user_msgusertouser (M_FromUserID, M_ToUserID, M_MSGContent, M_State, M_CreateTime)
+    values (#{mFromuserid,jdbcType=INTEGER}, #{mTouserid,jdbcType=INTEGER}, #{mMsgcontent,jdbcType=VARCHAR},
+      #{mState,jdbcType=INTEGER}, #{mCreatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="M_ID" keyProperty="mId" parameterType="org.example.LiveSystem.entity.UserMsgusertouser" useGeneratedKeys="true">
+    insert into user_msgusertouser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mFromuserid != null">
+        M_FromUserID,
+      </if>
+      <if test="mTouserid != null">
+        M_ToUserID,
+      </if>
+      <if test="mMsgcontent != null">
+        M_MSGContent,
+      </if>
+      <if test="mState != null">
+        M_State,
+      </if>
+      <if test="mCreatetime != null">
+        M_CreateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mFromuserid != null">
+        #{mFromuserid,jdbcType=INTEGER},
+      </if>
+      <if test="mTouserid != null">
+        #{mTouserid,jdbcType=INTEGER},
+      </if>
+      <if test="mMsgcontent != null">
+        #{mMsgcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="mState != null">
+        #{mState,jdbcType=INTEGER},
+      </if>
+      <if test="mCreatetime != null">
+        #{mCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.UserMsgusertouser">
+    update user_msgusertouser
+    <set>
+      <if test="mFromuserid != null">
+        M_FromUserID = #{mFromuserid,jdbcType=INTEGER},
+      </if>
+      <if test="mTouserid != null">
+        M_ToUserID = #{mTouserid,jdbcType=INTEGER},
+      </if>
+      <if test="mMsgcontent != null">
+        M_MSGContent = #{mMsgcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="mState != null">
+        M_State = #{mState,jdbcType=INTEGER},
+      </if>
+      <if test="mCreatetime != null">
+        M_CreateTime = #{mCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where M_ID = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.UserMsgusertouser">
+    update user_msgusertouser
+    set 
+      M_FromUserID = #{mFromuserid,jdbcType=INTEGER},
+      M_ToUserID = #{mTouserid,jdbcType=INTEGER},
+      M_MSGContent = #{mMsgcontent,jdbcType=VARCHAR},
+      M_State = #{mState,jdbcType=INTEGER},
+      M_CreateTime = #{mCreatetime,jdbcType=TIMESTAMP}
+    where M_ID = #{mId,jdbcType=INTEGER}
+  </update>
+</mapper>

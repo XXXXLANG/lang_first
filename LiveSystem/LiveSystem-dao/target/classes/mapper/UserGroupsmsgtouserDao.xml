@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.UserGroupsmsgtouserDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.UserGroupsmsgtouser">
+    <id column="GM_ID" jdbcType="INTEGER" property="gmId" />
+    <result column="GM_UserID" jdbcType="INTEGER" property="gmUserid" />
+    <result column="GM_GroupMessageID" jdbcType="INTEGER" property="gmGroupmessageid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GM_ID, GM_UserID, GM_GroupMessageID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_groupsmsgtouser
+    where GM_ID = #{gmId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_groupsmsgtouser
+    where GM_ID = #{gmId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="GM_ID" keyProperty="gmId" parameterType="org.example.LiveSystem.entity.UserGroupsmsgtouser" useGeneratedKeys="true">
+    insert into user_groupsmsgtouser (GM_UserID, GM_GroupMessageID)
+    values (#{gmUserid,jdbcType=INTEGER}, #{gmGroupmessageid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="GM_ID" keyProperty="gmId" parameterType="org.example.LiveSystem.entity.UserGroupsmsgtouser" useGeneratedKeys="true">
+    insert into user_groupsmsgtouser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gmUserid != null">
+        GM_UserID,
+      </if>
+      <if test="gmGroupmessageid != null">
+        GM_GroupMessageID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gmUserid != null">
+        #{gmUserid,jdbcType=INTEGER},
+      </if>
+      <if test="gmGroupmessageid != null">
+        #{gmGroupmessageid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.UserGroupsmsgtouser">
+    update user_groupsmsgtouser
+    <set>
+      <if test="gmUserid != null">
+        GM_UserID = #{gmUserid,jdbcType=INTEGER},
+      </if>
+      <if test="gmGroupmessageid != null">
+        GM_GroupMessageID = #{gmGroupmessageid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where GM_ID = #{gmId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.UserGroupsmsgtouser">
+    update user_groupsmsgtouser
+    set GM_UserID = #{gmUserid,jdbcType=INTEGER},
+    GM_GroupMessageID = #{gmGroupmessageid,jdbcType=INTEGER}
+    where GM_ID = #{gmId,jdbcType=INTEGER}
+  </update>
+</mapper>

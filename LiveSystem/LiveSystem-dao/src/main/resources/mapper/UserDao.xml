@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.UserDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.User">
+    <id column="U_ID" jdbcType="INTEGER" property="uId" />
+    <result column="U_LoginID" jdbcType="VARCHAR" property="uLoginid" />
+    <result column="U_NickName" jdbcType="VARCHAR" property="uNickname" />
+    <result column="U_PassWord" jdbcType="VARCHAR" property="uPassword" />
+    <result column="U_SignaTure" jdbcType="VARCHAR" property="uSignature" />
+    <result column="U_Sex" jdbcType="INTEGER" property="uSex" />
+    <result column="U_Birthday" jdbcType="TIMESTAMP" property="uBirthday" />
+    <result column="U_Sno" jdbcType="VARCHAR" property="uSno" />
+    <result column="U_Telephone" jdbcType="VARCHAR" property="uTelephone" />
+    <result column="U_Email" jdbcType="VARCHAR" property="uEmail" />
+    <result column="U_HeadPortrait" jdbcType="VARCHAR" property="uHeadportrait" />
+    <result column="U_SchoolTag" jdbcType="INTEGER" property="uSchooltag" />
+    <result column="U_position" jdbcType="INTEGER" property="uPosition" />
+    <result column="U_NationID" jdbcType="INTEGER" property="uNationid" />
+    <result column="U_ProvinceID" jdbcType="INTEGER" property="uProvinceid" />
+    <result column="U_CityID" jdbcType="INTEGER" property="uCityid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    U_ID, U_LoginID, U_NickName, U_PassWord, U_SignaTure, U_Sex, U_Birthday, U_Sno, U_Telephone, 
+    U_Email, U_HeadPortrait, U_SchoolTag, U_position, U_NationID, U_ProvinceID, U_CityID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where U_ID = #{uId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where U_ID = #{uId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="U_ID" keyProperty="uId" parameterType="org.example.LiveSystem.entity.User" useGeneratedKeys="true">
+    insert into user (U_LoginID, U_NickName, U_PassWord, 
+      U_SignaTure, U_Sex, U_Birthday, 
+      U_Sno, U_Telephone, U_Email, 
+      U_HeadPortrait, U_SchoolTag, U_position, 
+      U_NationID, U_ProvinceID, U_CityID
+      )
+    values (#{uLoginid,jdbcType=VARCHAR}, #{uNickname,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, 
+      #{uSignature,jdbcType=VARCHAR}, #{uSex,jdbcType=INTEGER}, #{uBirthday,jdbcType=TIMESTAMP}, 
+      #{uSno,jdbcType=VARCHAR}, #{uTelephone,jdbcType=VARCHAR}, #{uEmail,jdbcType=VARCHAR}, 
+      #{uHeadportrait,jdbcType=VARCHAR}, #{uSchooltag,jdbcType=INTEGER}, #{uPosition,jdbcType=INTEGER}, 
+      #{uNationid,jdbcType=INTEGER}, #{uProvinceid,jdbcType=INTEGER}, #{uCityid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="U_ID" keyProperty="uId" parameterType="org.example.LiveSystem.entity.User" useGeneratedKeys="true">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uLoginid != null">
+        U_LoginID,
+      </if>
+      <if test="uNickname != null">
+        U_NickName,
+      </if>
+      <if test="uPassword != null">
+        U_PassWord,
+      </if>
+      <if test="uSignature != null">
+        U_SignaTure,
+      </if>
+      <if test="uSex != null">
+        U_Sex,
+      </if>
+      <if test="uBirthday != null">
+        U_Birthday,
+      </if>
+      <if test="uSno != null">
+        U_Sno,
+      </if>
+      <if test="uTelephone != null">
+        U_Telephone,
+      </if>
+      <if test="uEmail != null">
+        U_Email,
+      </if>
+      <if test="uHeadportrait != null">
+        U_HeadPortrait,
+      </if>
+      <if test="uSchooltag != null">
+        U_SchoolTag,
+      </if>
+      <if test="uPosition != null">
+        U_position,
+      </if>
+      <if test="uNationid != null">
+        U_NationID,
+      </if>
+      <if test="uProvinceid != null">
+        U_ProvinceID,
+      </if>
+      <if test="uCityid != null">
+        U_CityID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uLoginid != null">
+        #{uLoginid,jdbcType=VARCHAR},
+      </if>
+      <if test="uNickname != null">
+        #{uNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uSignature != null">
+        #{uSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null">
+        #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uBirthday != null">
+        #{uBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uSno != null">
+        #{uSno,jdbcType=VARCHAR},
+      </if>
+      <if test="uTelephone != null">
+        #{uTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uHeadportrait != null">
+        #{uHeadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="uSchooltag != null">
+        #{uSchooltag,jdbcType=INTEGER},
+      </if>
+      <if test="uPosition != null">
+        #{uPosition,jdbcType=INTEGER},
+      </if>
+      <if test="uNationid != null">
+        #{uNationid,jdbcType=INTEGER},
+      </if>
+      <if test="uProvinceid != null">
+        #{uProvinceid,jdbcType=INTEGER},
+      </if>
+      <if test="uCityid != null">
+        #{uCityid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.User">
+    update user
+    <set>
+      <if test="uLoginid != null">
+        U_LoginID = #{uLoginid,jdbcType=VARCHAR},
+      </if>
+      <if test="uNickname != null">
+        U_NickName = #{uNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        U_PassWord = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uSignature != null">
+        U_SignaTure = #{uSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null">
+        U_Sex = #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uBirthday != null">
+        U_Birthday = #{uBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uSno != null">
+        U_Sno = #{uSno,jdbcType=VARCHAR},
+      </if>
+      <if test="uTelephone != null">
+        U_Telephone = #{uTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        U_Email = #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uHeadportrait != null">
+        U_HeadPortrait = #{uHeadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="uSchooltag != null">
+        U_SchoolTag = #{uSchooltag,jdbcType=INTEGER},
+      </if>
+      <if test="uPosition != null">
+        U_position = #{uPosition,jdbcType=INTEGER},
+      </if>
+      <if test="uNationid != null">
+        U_NationID = #{uNationid,jdbcType=INTEGER},
+      </if>
+      <if test="uProvinceid != null">
+        U_ProvinceID = #{uProvinceid,jdbcType=INTEGER},
+      </if>
+      <if test="uCityid != null">
+        U_CityID = #{uCityid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where U_ID = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.User">
+    update user
+    set U_LoginID = #{uLoginid,jdbcType=VARCHAR},
+      U_NickName = #{uNickname,jdbcType=VARCHAR},
+      U_PassWord = #{uPassword,jdbcType=VARCHAR},
+      U_SignaTure = #{uSignature,jdbcType=VARCHAR},
+      U_Sex = #{uSex,jdbcType=INTEGER},
+      U_Birthday = #{uBirthday,jdbcType=TIMESTAMP},
+      U_Sno = #{uSno,jdbcType=VARCHAR},
+      U_Telephone = #{uTelephone,jdbcType=VARCHAR},
+      U_Email = #{uEmail,jdbcType=VARCHAR},
+      U_HeadPortrait = #{uHeadportrait,jdbcType=VARCHAR},
+      U_SchoolTag = #{uSchooltag,jdbcType=INTEGER},
+      U_position = #{uPosition,jdbcType=INTEGER},
+      U_NationID = #{uNationid,jdbcType=INTEGER},
+      U_ProvinceID = #{uProvinceid,jdbcType=INTEGER},
+      U_CityID = #{uCityid,jdbcType=INTEGER}
+    where U_ID = #{uId,jdbcType=INTEGER}
+  </update>
+</mapper>

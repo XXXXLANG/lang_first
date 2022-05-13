@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="660.0" maxWidth="346.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="346.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.HomePane.LiveController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="344.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: black;">
+         <children>
+            <TextField fx:id="search" layoutX="14.0" layoutY="12.0" prefHeight="35.0" prefWidth="266.0" promptText="搜索">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Button layoutX="297.0" layoutY="12.0" mnemonicParsing="false" onAction="#addAction" prefHeight="35.0" prefWidth="35.0" text="〸">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane prefHeight="547.0" prefWidth="344.0">
+         <children>
+            <Button layoutX="34.0" mnemonicParsing="false" onMouseClicked="#createGroup" prefHeight="42.0" prefWidth="277.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" text="创建班级" />
+            <ScrollPane fx:id="scrollpane" layoutY="42.0" prefHeight="556.0" prefViewportHeight="596.0" prefViewportWidth="344.0" prefWidth="344.0">
+               <content>
+                  <VBox fx:id="chatList" prefHeight="554.0" prefWidth="342.0" style="-fx-background-color: #F5F5F5;" />
+               </content>
+            </ScrollPane>
+            <VBox fx:id="addRequest" prefHeight="599.0" prefWidth="344.0" style="-fx-background-color: #F5F5F5;">
+               <children>
+                  <AnchorPane prefHeight="48.0" prefWidth="344.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: white;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="12.0" text="全网搜索" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="addFriend" prefHeight="84.0" prefWidth="344.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: white;">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/225默认头像.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="75.0" layoutY="14.0" text="搜索好友" />
+                        <Label layoutX="75.0" layoutY="42.0" text="通过手机号搜索添加好友" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="addClass" prefHeight="84.0" prefWidth="344.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: white;">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/225默认头像.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="75.0" layoutY="14.0" text="搜索班级" />
+                        <Label layoutX="75.0" layoutY="42.0" text="通过班级号搜索" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

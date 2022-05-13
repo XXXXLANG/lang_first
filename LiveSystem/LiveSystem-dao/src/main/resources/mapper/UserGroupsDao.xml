@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.UserGroupsDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.UserGroups">
+    <id column="UG_ID" jdbcType="INTEGER" property="ugId" />
+    <result column="UG_Name" jdbcType="VARCHAR" property="ugName" />
+    <result column="UG_GroupNum" jdbcType="VARCHAR" property="ugGroupNum" />
+    <result column="UG_CreateTime" jdbcType="TIMESTAMP" property="ugCreatetime" />
+    <result column="UG_AdminID" jdbcType="INTEGER" property="ugAdminid" />
+    <result column="UG_ICon" jdbcType="VARCHAR" property="ugIcon" />
+    <result column="UG_Notice" jdbcType="VARCHAR" property="ugNotice" />
+    <result column="UG_Intro" jdbcType="VARCHAR" property="ugIntro" />
+    <result column="UG_Verification" jdbcType="INTEGER" property="ugVerification" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UG_ID, UG_Name, UG_GroupNum, UG_CreateTime, UG_AdminID, UG_ICon, UG_Notice, UG_Intro, UG_Verification
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_groups
+    where UG_ID = #{ugId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_groups
+    where UG_ID = #{ugId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="UG_ID" keyProperty="ugId" parameterType="org.example.LiveSystem.entity.UserGroups" useGeneratedKeys="true">
+    insert into user_groups (UG_Name, UG_GroupNum, UG_CreateTime, UG_AdminID, UG_ICon, UG_Notice, UG_Intro, UG_Verification)
+    values (#{ugName,jdbcType=VARCHAR}, #{ugGroupNum,jdbcType=VARCHAR}, #{ugCreatetime,jdbcType=TIMESTAMP}, #{ugAdminid,jdbcType=INTEGER},
+      #{ugIcon,jdbcType=VARCHAR}, #{ugNotice,jdbcType=VARCHAR}, #{ugIntro,jdbcType=VARCHAR}, #{ugVerification,jdbcType=INTEGER}
+      )
+    <selectKey keyProperty="ugId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" keyColumn="UG_ID" keyProperty="ugId" parameterType="org.example.LiveSystem.entity.UserGroups" useGeneratedKeys="true">
+    insert into user_groups
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ugName != null">
+        UG_Name,
+      </if>
+      <if test="ugGroupNum != null">
+        UG_GroupNum,
+      </if>
+      <if test="ugCreatetime != null">
+        UG_CreateTime,
+      </if>
+      <if test="ugAdminid != null">
+        UG_AdminID,
+      </if>
+      <if test="ugIcon != null">
+        UG_ICon,
+      </if>
+      <if test="ugNotice != null">
+        UG_Notice,
+      </if>
+      <if test="ugIntro != null">
+        UG_Intro,
+      </if>
+      <if test="ugVerification != null">
+        UG_Verification,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ugName != null">
+        #{ugName,jdbcType=VARCHAR},
+      </if>
+      <if test="ugGroupNum != null">
+        #{ugGroupNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ugCreatetime != null">
+        #{ugCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ugAdminid != null">
+        #{ugAdminid,jdbcType=INTEGER},
+      </if>
+      <if test="ugIcon != null">
+        #{ugIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="ugNotice != null">
+        #{ugNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="ugIntro != null">
+        #{ugIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="ugVerification != null">
+        #{ugVerification,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.UserGroups">
+    update user_groups
+    <set>
+      <if test="ugName != null">
+        UG_Name = #{ugName,jdbcType=VARCHAR},
+      </if>
+      <if test="ugGroupNum != null">
+        UG_GroupNum = #{ugGroupNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ugCreatetime != null">
+        UG_CreateTime = #{ugCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ugAdminid != null">
+        UG_AdminID = #{ugAdminid,jdbcType=INTEGER},
+      </if>
+      <if test="ugIcon != null">
+        UG_ICon = #{ugIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="ugNotice != null">
+        UG_Notice = #{ugNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="ugIntro != null">
+        UG_Intro = #{ugIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="ugVerification != null">
+        ugVerification = #{ugVerification,jdbcType=INTEGER},
+      </if>
+    </set>
+    where UG_ID = #{ugId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.UserGroups">
+    update user_groups
+    set UG_Name = #{ugName,jdbcType=VARCHAR},
+      UG_GroupNum = #{ugGroupNum,jdbcType=VARCHAR},
+      UG_CreateTime = #{ugCreatetime,jdbcType=TIMESTAMP},
+      UG_AdminID = #{ugAdminid,jdbcType=INTEGER},
+      UG_ICon = #{ugIcon,jdbcType=VARCHAR},
+      UG_Notice = #{ugNotice,jdbcType=VARCHAR},
+      UG_Intro = #{ugIntro,jdbcType=VARCHAR},
+      ugVerification = #{ugVerification,jdbcType=INTEGER}
+    where UG_ID = #{ugId,jdbcType=INTEGER}
+  </update>
+
+    <update id="updateAdmin">
+      update user_groups
+      set
+          UG_AdminID = #{nextAdmin}
+      where UG_ID = #{gid}
+    </update>
+</mapper>

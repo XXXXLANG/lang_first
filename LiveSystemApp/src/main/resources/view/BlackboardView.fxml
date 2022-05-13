@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="851.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.painting.BlackboardController">
+   <top>
+      <AnchorPane fx:id="canvasPane" prefHeight="46.0" prefWidth="1315.0" style="-fx-background-color: #353030;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="bord" layoutX="639.0" layoutY="10.0" text="黑板" textFill="#f5f5f5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="menuPane" layoutX="835.0" layoutY="5.0" prefHeight="35.0" prefWidth="459.0">
+               <children>
+      
+                  <ImageView fx:id="mikeImg" onMouseClicked="#mikeAction" fitHeight="20.0" fitWidth="20.0" layoutX="150.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/麦克风-打开.png" />
+                     </image>
+                  </ImageView>
+                  <Button onMouseClicked="#selMike" mnemonicParsing="false" layoutX="170.0" layoutY="3.0" prefHeight="36.0" prefWidth="7.0" style="-fx-background-color: #353030;" text="▾" textFill="WHITE" />
+      
+                  <ImageView fx:id="cameraImg" onMouseClicked="#cameraAction" fitHeight="20.0" fitWidth="20.0" layoutX="213.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/摄像头-打开.png" />
+                     </image>
+                  </ImageView>
+                  <Button onMouseClicked="#selCamera" mnemonicParsing="false" layoutX="233.0" layoutY="3.0" prefHeight="36.0" prefWidth="17.0" style="-fx-background-color: #353030;" text="▾" textFill="WHITE" />
+      
+                  <ImageView fx:id="videoImg" onMouseClicked="#videoAction" fitHeight="20.0" fitWidth="20.0" layoutX="293.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/录制.png" />
+                     </image>
+                  </ImageView>
+      
+                  <Button fx:id="minBT" layoutX="346.0" mnemonicParsing="false" onAction="#minAction" prefHeight="42.0" prefWidth="50.0" style="-fx-background-color: #353030;" text="➖" textFill="WHITE" />
+                  <Button fx:id="switchBT" layoutX="388.0" mnemonicParsing="false" onAction="#switchAction" prefHeight="42.0" prefWidth="50.0" style="-fx-background-color: #353030;" text="◯" textFill="WHITE" />
+                  <Button fx:id="closeBT" layoutX="430.0" mnemonicParsing="false" onMouseClicked="#closeAction" prefHeight="42.0" prefWidth="50.0" style="-fx-background-color: #353030;" text="❌" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <StackPane fx:id="root" prefHeight="774.0" prefWidth="1315.0" style="-fx-background-color: #353030;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

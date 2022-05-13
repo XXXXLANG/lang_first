@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" prefHeight="94.0" prefWidth="507.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.RequestProcess.ProcessingController">
+   <children>
+      <Button fx:id="trueBt" layoutX="401.0" layoutY="10.0" mnemonicParsing="false" onAction="#trueAction" prefHeight="36.0" prefWidth="79.0" style="-fx-background-color: #4EEE94;" text="接受" />
+      <Button fx:id="falseBt" layoutX="401.0" layoutY="50.0" mnemonicParsing="false" onAction="#falseAction" prefHeight="36.0" prefWidth="79.0" style="-fx-background-color: #FF4040;" text="拒绝" textFill="WHITE" />
+      <ImageView fx:id="faceIcon" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/225默认头像.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="name" layoutX="79.0" layoutY="16.0" prefHeight="24.0" prefWidth="153.0" text="昵称" />
+      <Label fx:id="intro" layoutX="79.0" layoutY="56.0" prefHeight="24.0" prefWidth="209.0" text="申请简介" />
+      <Label fx:id="createTime" layoutX="297.0" layoutY="56.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="24.0" prefWidth="97.0" text="2022.11.11" />
+      <Label fx:id="isAddFriend" layoutX="240.0" layoutY="16.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="24.0" prefWidth="153.0" text="好友申请" textAlignment="CENTER">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" prefHeight="472.0" prefWidth="366.0" style="-fx-border-color: black; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.InfoDispaly.GroupInfoTwoController">
+    <children>
+        <AnchorPane layoutX="2" layoutY="2" prefHeight="91.0" prefWidth="368.0" style="-fx-background-color: #10ad68;">
+            <children>
+                <ImageView fx:id="groupImg" fitHeight="75.0" fitWidth="78.0" layoutX="23.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../img/225默认头像.png" />
+                    </image>
+                </ImageView>
+            <Label fx:id="Gname" layoutX="106.0" layoutY="34.0" text="群名称" />
+            </children>
+        </AnchorPane>
+      <Label layoutX="39.0" layoutY="113.0" text="班级简介" />
+      <Label layoutX="39.0" layoutY="212.0" prefHeight="24.0" prefWidth="103.0" text="班主任/教师" />
+      <Label layoutX="142.0" layoutY="212.0" prefHeight="24.0" prefWidth="28.0" text="(1)" />
+      <Label fx:id="intro" layoutX="39.0" layoutY="145.0" prefHeight="24.0" prefWidth="285.0" text="班主任什么都没有留下~" />
+      <ImageView fx:id="Timg" fitHeight="45.0" fitWidth="45.0" layoutX="39.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/225默认头像.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="Tname" layoutX="95.0" layoutY="267.0" prefHeight="24.0" prefWidth="111.0" text="教师名称" />
+      <Button layoutX="60.0" layoutY="411.0" mnemonicParsing="false" onMouseClicked="#accessGroup" prefHeight="37.0" prefWidth="252.0" style="-fx-background-color: #10ad68;" text="进入聊天" />
+    </children>
+</AnchorPane>

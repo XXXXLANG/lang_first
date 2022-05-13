@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.ProvinceDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.Province">
+    <id column="P_ID" jdbcType="INTEGER" property="pId" />
+    <result column="P_Name" jdbcType="VARCHAR" property="pName" />
+    <result column="P_NationID" jdbcType="INTEGER" property="pNationid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    P_ID, P_Name, P_NationID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from province
+    where P_ID = #{pId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from province
+    where P_ID = #{pId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="P_ID" keyProperty="pId" parameterType="org.example.LiveSystem.entity.Province" useGeneratedKeys="true">
+    insert into province (P_Name, P_NationID)
+    values (#{pName,jdbcType=VARCHAR}, #{pNationid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="P_ID" keyProperty="pId" parameterType="org.example.LiveSystem.entity.Province" useGeneratedKeys="true">
+    insert into province
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pName != null">
+        P_Name,
+      </if>
+      <if test="pNationid != null">
+        P_NationID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pName != null">
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pNationid != null">
+        #{pNationid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.Province">
+    update province
+    <set>
+      <if test="pName != null">
+        P_Name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pNationid != null">
+        P_NationID = #{pNationid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where P_ID = #{pId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.Province">
+    update province
+    set P_Name = #{pName,jdbcType=VARCHAR},
+      P_NationID = #{pNationid,jdbcType=INTEGER}
+    where P_ID = #{pId,jdbcType=INTEGER}
+  </update>
+</mapper>

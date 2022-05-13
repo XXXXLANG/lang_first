@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.SchoolDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.School">
+    <id column="S_ID" jdbcType="INTEGER" property="sId" />
+    <result column="S_Name" jdbcType="VARCHAR" property="sName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    S_ID, S_Name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from school
+    where S_ID = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from school
+    where S_ID = #{sId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="S_ID" keyProperty="sId" parameterType="org.example.LiveSystem.entity.School" useGeneratedKeys="true">
+    insert into school (S_Name)
+    values (#{sName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="S_ID" keyProperty="sId" parameterType="org.example.LiveSystem.entity.School" useGeneratedKeys="true">
+    insert into school
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sName != null">
+        S_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sName != null">
+        #{sName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.School">
+    update school
+    <set>
+      <if test="sName != null">
+        S_Name = #{sName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where S_ID = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.School">
+    update school
+    set S_Name = #{sName,jdbcType=VARCHAR}
+    where S_ID = #{sId,jdbcType=INTEGER}
+  </update>
+</mapper>

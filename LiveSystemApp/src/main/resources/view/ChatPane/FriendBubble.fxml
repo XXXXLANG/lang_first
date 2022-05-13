@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="92.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.ChatPane.BubbleController">
+   <children>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image fx:id="imageView" url="@../../img/225默认头像.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="FriendName" layoutX="73.0" layoutY="27.0" prefHeight="24.0" prefWidth="148.0" />
+      <TextArea fx:id="content" layoutX="73.0" layoutY="52.0" maxWidth="400" prefHeight="25.0" prefWidth="148.0" style="-fx-background-color: #009265" />
+      <Label fx:id="sendTime" layoutX="240.0" layoutY="2.0" prefHeight="24.0" prefWidth="212.0" text="2022-11-11  11:11:11" />
+   </children>
+</AnchorPane>

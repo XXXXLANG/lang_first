@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.FriendRequestDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.FriendRequest">
+    <id column="FR_ID" jdbcType="INTEGER" property="frId" />
+    <result column="FR_User" jdbcType="INTEGER" property="frUser" />
+    <result column="FR_Group" jdbcType="INTEGER" property="frGroup" />
+    <result column="FR_Applicant" jdbcType="INTEGER" property="frApplicant" />
+    <result column="FR_Intro" jdbcType="VARCHAR" property="frIntro" />
+    <result column="FR_AliasFriend" jdbcType="VARCHAR" property="frAliasfriend" />
+    <result column="FR_CreateTime" jdbcType="TIMESTAMP" property="frCreatetime" />
+    <result column="FR_state" jdbcType="INTEGER" property="frState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FR_ID, FR_User, FR_Group, FR_Applicant, FR_Intro, FR_AliasFriend, FR_CreateTime, FR_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from friend_request
+    where FR_ID = #{frId,jdbcType=INTEGER}
+  </select>
+
+    <select id="findRequestByuid" resultType="org.example.LiveSystem.entity.FriendRequest">
+      select
+        <include refid="Base_Column_List" />
+      from friend_request
+      where
+        FR_User = #{uid} and FR_state = 0
+    union all
+      select
+        <include refid="Base_Column_List" />
+      from friend_request,user_groups
+      where
+            FR_Group = UG_ID
+        and
+            UG_AdminID = #{uid}
+        and
+            FR_state = 0
+    </select>
+
+    <select id="findByUidFid" resultType="org.example.LiveSystem.entity.FriendRequest">
+      select
+        <include refid="Base_Column_List" />
+      from friend_request
+      where
+            <if test="isFriend == 1">
+              FR_User = #{fid}
+            </if>
+            <if test="isFriend != 1">
+              FR_Group = #{fid}
+            </if>
+        and
+            FR_Applicant = #{uid}
+        and
+            FR_state=0
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from friend_request
+    where FR_ID = #{frId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="FR_ID" keyProperty="frId" parameterType="org.example.LiveSystem.entity.FriendRequest" useGeneratedKeys="true">
+    insert into friend_request (FR_User, FR_Group, FR_Applicant, FR_Intro,
+      FR_AliasFriend, FR_CreateTime, FR_state
+      )
+    values (#{frUser,jdbcType=INTEGER}, #{frGroup,jdbcType=INTEGER}, #{frApplicant,jdbcType=INTEGER}, #{frIntro,jdbcType=VARCHAR},
+      #{frAliasfriend,jdbcType=VARCHAR}, #{frCreatetime,jdbcType=TIMESTAMP}, #{frState,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="FR_ID" keyProperty="frId" parameterType="org.example.LiveSystem.entity.FriendRequest" useGeneratedKeys="true">
+    insert into friend_request
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="frUser != null">
+        FR_User,
+      </if>
+      <if test="frGroup != null">
+        FR_Group,
+      </if>
+      <if test="frApplicant != null">
+        FR_Applicant,
+      </if>
+      <if test="frIntro != null">
+        FR_Intro,
+      </if>
+      <if test="frAliasfriend != null">
+        FR_AliasFriend,
+      </if>
+      <if test="frCreatetime != null">
+        FR_CreateTime,
+      </if>
+      <if test="frState != null">
+        FR_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="frUser != null">
+        #{frUser,jdbcType=INTEGER},
+      </if>
+      <if test="frGroup != null">
+        #{FR_Group,jdbcType=INTEGER},
+      </if>
+      <if test="frApplicant != null">
+        #{frApplicant,jdbcType=INTEGER},
+      </if>
+      <if test="frIntro != null">
+        #{frIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="frAliasfriend != null">
+        #{frAliasfriend,jdbcType=VARCHAR},
+      </if>
+      <if test="frCreatetime != null">
+        #{frCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="frState != null">
+        #{frState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.FriendRequest">
+    update friend_request
+    <set>
+      <if test="frUser != null">
+        FR_User = #{frUser,jdbcType=INTEGER},
+      </if>
+      <if test="frGroup != null">
+        #{FR_Group,jdbcType=INTEGER},
+      </if>
+      <if test="frApplicant != null">
+        FR_Applicant = #{frApplicant,jdbcType=INTEGER},
+      </if>
+      <if test="frIntro != null">
+        FR_Intro = #{frIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="frAliasfriend != null">
+        FR_AliasFriend = #{frAliasfriend,jdbcType=VARCHAR},
+      </if>
+      <if test="frCreatetime != null">
+        FR_CreateTime = #{frCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="frState != null">
+        FR_state = #{frState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where FR_ID = #{frId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.FriendRequest">
+    update friend_request
+    set FR_User = #{frUser,jdbcType=INTEGER},
+        FR_Group = #{frGroup,jdbcType=INTEGER},
+      FR_Applicant = #{frApplicant,jdbcType=INTEGER},
+      FR_Intro = #{frIntro,jdbcType=VARCHAR},
+      FR_AliasFriend = #{frAliasfriend,jdbcType=VARCHAR},
+      FR_CreateTime = #{frCreatetime,jdbcType=TIMESTAMP},
+      FR_state = #{frState,jdbcType=INTEGER}
+    where FR_ID = #{frId,jdbcType=INTEGER}
+  </update>
+  <update id="updateStateByFRID">
+    update friend_request
+    set
+      FR_state = #{state}
+    where FR_ID = #{FrId}
+  </update>
+</mapper>

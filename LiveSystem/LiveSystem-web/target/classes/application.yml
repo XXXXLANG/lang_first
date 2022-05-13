@@ -1,0 +1,22 @@
+# 数据源
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/live_system?useUicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: zeng0103
+    # 不需要制定，springboot会根据url的配置自动加载驱动
+    #driver-class-name:
+#redis的配置信息
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+
+# mybatis
+mybatis:
+  # sql映射文件的路径
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: org.example.LiveSystem.entity
+  ##开启驼峰映射
+  configuration:
+    map-underscore-to-camel-case: true

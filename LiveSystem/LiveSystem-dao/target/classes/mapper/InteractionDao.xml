@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.InteractionDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.Interaction">
+    <id column="I_ID" jdbcType="INTEGER" property="iId" />
+    <result column="I_Pattern" jdbcType="VARCHAR" property="iPattern" />
+    <result column="I_UserID" jdbcType="INTEGER" property="iUserid" />
+    <result column="I_CreateTime" jdbcType="TIMESTAMP" property="iCreatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    I_ID, I_Pattern, I_UserID, I_CreateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from interaction
+    where I_ID = #{iId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from interaction
+    where I_ID = #{iId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="I_ID" keyProperty="iId" parameterType="org.example.LiveSystem.entity.Interaction" useGeneratedKeys="true">
+    insert into interaction (I_Pattern, I_UserID, I_CreateTime
+      )
+    values (#{iPattern,jdbcType=VARCHAR}, #{iUserid,jdbcType=INTEGER}, #{iCreatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="I_ID" keyProperty="iId" parameterType="org.example.LiveSystem.entity.Interaction" useGeneratedKeys="true">
+    insert into interaction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="iPattern != null">
+        I_Pattern,
+      </if>
+      <if test="iUserid != null">
+        I_UserID,
+      </if>
+      <if test="iCreatetime != null">
+        I_CreateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="iPattern != null">
+        #{iPattern,jdbcType=VARCHAR},
+      </if>
+      <if test="iUserid != null">
+        #{iUserid,jdbcType=INTEGER},
+      </if>
+      <if test="iCreatetime != null">
+        #{iCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.Interaction">
+    update interaction
+    <set>
+      <if test="iPattern != null">
+        I_Pattern = #{iPattern,jdbcType=VARCHAR},
+      </if>
+      <if test="iUserid != null">
+        I_UserID = #{iUserid,jdbcType=INTEGER},
+      </if>
+      <if test="iCreatetime != null">
+        I_CreateTime = #{iCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where I_ID = #{iId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.Interaction">
+    update interaction
+    set I_Pattern = #{iPattern,jdbcType=VARCHAR},
+      I_UserID = #{iUserid,jdbcType=INTEGER},
+      I_CreateTime = #{iCreatetime,jdbcType=TIMESTAMP}
+    where I_ID = #{iId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.HomePane.HomeController">
+   <left>
+      <AnchorPane prefHeight="658.0" prefWidth="41.0" style="-fx-background-color: #596e82;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="userFace" fitHeight="60.0" fitWidth="60.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/225默认头像.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="live" layoutX="1.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#liveAction" prefHeight="60.0" prefWidth="60.0" text="Live" />
+            <Button fx:id="Friends" layoutX="1.0" layoutY="120.0" mnemonicParsing="false" onMouseClicked="#FriendsAction" prefHeight="60.0" prefWidth="60.0" text="联系人">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="setting" contentDisplay="BOTTOM" layoutX="1.0" layoutY="598.0" mnemonicParsing="false" onAction="#settingAction" prefHeight="60.0" prefWidth="60.0" text="设置" />
+            <Button fx:id="Blackboard" layoutX="1.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#BlackboardAction" prefHeight="60.0" prefWidth="60.0" text="黑板" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <VBox prefHeight="658.0" prefWidth="346.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="submenu" prefHeight="193.0" prefWidth="344.0" />
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <VBox prefHeight="658.0" prefWidth="582.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="threeLevelMenu" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </right>
+</BorderPane>

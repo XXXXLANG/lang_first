@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="658.0" prefWidth="582.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.InfoDispaly.FriendInfoController">
+   <children>
+      <Label fx:id="nickName" layoutX="97.0" layoutY="80.0" prefHeight="33.0" prefWidth="225.0" text="个人ID" />
+      <ImageView fx:id="headPortrait" fitHeight="76.0" fitWidth="77.0" layoutX="428.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/225默认头像.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="76.0" layoutY="229.0" prefHeight="200.0" prefWidth="430.0" style="-fx-border-color: black; -fx-border-width: 1 0 1 0;">
+         <children>
+            <Label layoutX="25.0" layoutY="23.0" prefHeight="24.0" prefWidth="54.0" text="备   注" />
+            <Label layoutX="25.0" layoutY="57.0" prefHeight="24.0" prefWidth="54.0" text="邮   箱" />
+            <Label layoutX="26.0" layoutY="100.0" prefHeight="24.0" prefWidth="54.0" text="账   号" />
+            <Label layoutX="26.0" layoutY="144.0" prefHeight="24.0" prefWidth="54.0" text="来   源" />
+            <Label fx:id="alias" layoutX="119.0" layoutY="23.0" prefHeight="24.0" prefWidth="225.0" text="未设置" />
+            <Label fx:id="email" layoutX="119.0" layoutY="57.0" prefHeight="24.0" prefWidth="225.0" text="未设置" />
+            <Label fx:id="loginID" layoutX="119.0" layoutY="100.0" prefHeight="24.0" prefWidth="225.0" text="未设置" />
+            <Label layoutX="119.0" layoutY="144.0" prefHeight="24.0" prefWidth="225.0" text="通过账号添加" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="signaTure" layoutX="97.0" layoutY="118.0" prefHeight="33.0" prefWidth="225.0" text="个人简介" />
+      <Button fx:id="sendChar" layoutX="211.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#sendCharAction" prefHeight="45.0" prefWidth="160.0" style="-fx-background-color: #00CD66;" text="发消息" />
+   </children>
+</AnchorPane>

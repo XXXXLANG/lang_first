@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" prefHeight="220.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.HomePane.CreateGroupController">
+   <children>
+      <Label layoutX="40.0" layoutY="126.0" text="班级名" />
+      <Label layoutX="40.0" layoutY="14.0" text="创建班级" />
+      <Label layoutX="40.0" layoutY="70.0" text="头像" />
+      <ImageView fx:id="groupImg" fitHeight="54.0" fitWidth="54.0" layoutX="134.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/225默认头像.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="223.0" layoutY="64.0" mnemonicParsing="false" onAction="#upload" text="上传" />
+      <TextField fx:id="GroupName" layoutX="134.0" layoutY="120.0" prefHeight="36.0" prefWidth="238.0" promptText="不超过15个字的班级名称" />
+      <Button layoutX="120.0" layoutY="170.0" mnemonicParsing="false" onAction="#Create" prefHeight="36.0" prefWidth="193.0" style="-fx-background-color: #009265;" text="创建班级" />
+   </children>
+</AnchorPane>

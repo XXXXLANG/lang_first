@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="658.0" prefWidth="582.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.InfoDispaly.GroupInfoController">
+   <children>
+      <Label fx:id="GroupName" layoutX="97.0" layoutY="102.0" prefHeight="33.0" prefWidth="225.0" text="班级名称" />
+      <ImageView fitHeight="76.0" fitWidth="77.0" layoutX="428.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image fx:id="GroupIcon" url="@../../img/225默认头像.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="intro" layoutX="97.0" layoutY="202.0" prefHeight="33.0" prefWidth="297.0" text="班级简介" />
+      <Button layoutX="211.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#sendCharAction" prefHeight="45.0" prefWidth="160.0" style="-fx-background-color: #00CD66;" text="发消息" />
+      <Label layoutX="97.0" layoutY="169.0" prefHeight="33.0" text="班级简介" />
+      <Label layoutX="97.0" layoutY="289.0" text="班主任/教室" />
+      <Label layoutX="200.0" layoutY="289.0" text="(1)" />
+      <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="97.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image fx:id="teacherIcon" url="@../../img/225默认头像.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="teacherName" layoutX="164.0" layoutY="340.0" text="名称" />
+   </children>
+</AnchorPane>

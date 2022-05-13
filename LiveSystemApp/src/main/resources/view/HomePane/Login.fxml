@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.livesystemapp.controller.HomePane.LoginController">
+   <children>
+      <AnchorPane fx:id="loginPane" style="-fx-background-color: white;">
+         <children>
+            <ImageView fx:id="phone" fitHeight="36.0" fitWidth="38.0" layoutY="1.0">
+               <image>
+                  <Image url="@../../img/phone.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="136.0" layoutY="24.0" prefHeight="47.0" prefWidth="156.0" text="LiveSystem" textFill="#009265">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="userFace" fitHeight="92.0" fitWidth="96.0" layoutX="168.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/225默认头像.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="userID" layoutX="43.0" layoutY="198.0" prefHeight="36.0" prefWidth="342.0" promptText="请输入账号" />
+            <PasswordField fx:id="password" layoutX="43.0" layoutY="255.0" prefHeight="36.0" prefWidth="342.0" promptText="请输入密码" />
+            <Button fx:id="login" layoutX="43.0" layoutY="323.0" mnemonicParsing="false" onAction="#login" prefHeight="36.0" prefWidth="342.0" style="-fx-background-color: #009265;" text="登录" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <AnchorPane layoutY="419.0" prefHeight="92.0" prefWidth="428.0">
+               <children>
+                  <CheckBox fx:id="aotoLogin" layoutX="20.0" layoutY="58.0" mnemonicParsing="false" onAction="#aotoLogin" text="自动登录" />
+                  <CheckBox fx:id="remember" layoutX="20.0" layoutY="15.0" mnemonicParsing="false" onAction="#remember" text="记住密码" />
+                  <Button layoutX="318.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="忘记密码" />
+                  <Button layoutX="318.0" layoutY="53.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="更多设置" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="104.0" layoutY="384.0" prefHeight="24.0" prefWidth="111.0" text="还没有账号？" />
+            <Button layoutX="204.0" layoutY="378.0" mnemonicParsing="false" onAction="#register" prefHeight="36.0" prefWidth="96.0" style="-fx-background-color: white;" text="立即注册" textFill="#009265" />
+            <Label fx:id="errorText" layoutX="43.0" layoutY="291.0" prefHeight="24.0" prefWidth="342.0" textFill="RED" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="phonePane" prefHeight="208.0" prefWidth="428.0" AnchorPane.topAnchor="180.0">
+         <children>
+            <TextField fx:id="phoneNum" layoutX="43.0" layoutY="14.0" prefHeight="47.0" prefWidth="342.0" promptText="请输入手机号码" />
+            <TextField fx:id="sms" layoutX="176.0" layoutY="75.0" prefHeight="37.0" prefWidth="209.0" promptText="验证码" />
+            <Button layoutX="43.0" layoutY="143.0" mnemonicParsing="false" onAction="#smslogin" prefHeight="36.0" prefWidth="342.0" style="-fx-background-color: #009265;" text="登录" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button fx:id="smsRequest" layoutX="43.0" layoutY="75.0" mnemonicParsing="false" onAction="#smsRequestAction" prefHeight="37.0" prefWidth="133.0" text="获取验证码" />
+            <Label fx:id="smsError" layoutX="67.0" layoutY="112.0" prefHeight="24.0" prefWidth="295.0" textFill="RED" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="registerPane" prefHeight="511.0" prefWidth="428.0">
+         <children>
+            <Label fx:id="back" layoutX="35.0" layoutY="30.0" text="&lt;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="160.0" layoutY="25.0" text="注册账号" textFill="#009265">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <TextField fx:id="loginID" layoutX="42.0" layoutY="168.0" prefHeight="36.0" prefWidth="342.0" promptText="请输入账号（11~18位数字）" />
+            <TextField fx:id="psw" layoutX="42.0" layoutY="220.0" prefHeight="36.0" prefWidth="342.0" promptText="密码（字符，数字和下划线，11位长度）" />
+            <TextField fx:id="rePsw" layoutX="42.0" layoutY="272.0" prefHeight="36.0" prefWidth="342.0" promptText="请重复输入密码" />
+            <Button layoutX="42.0" layoutY="408.0" mnemonicParsing="false" onAction="#registerBT" prefHeight="51.0" prefWidth="342.0" style="-fx-background-color: #009265;" text="确定" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <CheckBox fx:id="sure" layoutX="44.0" layoutY="380.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="318.0" text="已阅读并同意用户协议，隐私协议和儿童隐私正常">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="reError" layoutX="44.0" layoutY="321.0" prefHeight="24.0" prefWidth="342.0" textFill="RED" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

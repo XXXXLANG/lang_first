@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.LiveSystem.dao.NationDao">
+  <resultMap id="BaseResultMap" type="org.example.LiveSystem.entity.Nation">
+    <id column="N_ID" jdbcType="INTEGER" property="nId" />
+    <result column="N_Name" jdbcType="VARCHAR" property="nName" />
+    <result column="N_Short" jdbcType="VARCHAR" property="nShort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    N_ID, N_Name, N_Short
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nation
+    where N_ID = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from nation
+    where N_ID = #{nId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="N_ID" keyProperty="nId" parameterType="org.example.LiveSystem.entity.Nation" useGeneratedKeys="true">
+    insert into nation (N_Name, N_Short)
+    values (#{nName,jdbcType=VARCHAR}, #{nShort,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="N_ID" keyProperty="nId" parameterType="org.example.LiveSystem.entity.Nation" useGeneratedKeys="true">
+    insert into nation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nName != null">
+        N_Name,
+      </if>
+      <if test="nShort != null">
+        N_Short,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nName != null">
+        #{nName,jdbcType=VARCHAR},
+      </if>
+      <if test="nShort != null">
+        #{nShort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.LiveSystem.entity.Nation">
+    update nation
+    <set>
+      <if test="nName != null">
+        N_Name = #{nName,jdbcType=VARCHAR},
+      </if>
+      <if test="nShort != null">
+        N_Short = #{nShort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where N_ID = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.LiveSystem.entity.Nation">
+    update nation
+    set N_Name = #{nName,jdbcType=VARCHAR},
+      N_Short = #{nShort,jdbcType=VARCHAR}
+    where N_ID = #{nId,jdbcType=INTEGER}
+  </update>
+</mapper>
