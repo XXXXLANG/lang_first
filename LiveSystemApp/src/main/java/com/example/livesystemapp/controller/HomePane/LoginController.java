@@ -71,8 +71,6 @@ public class LoginController implements Initializable {
     void login(ActionEvent event) throws Exception {
         String uID = userID.getText();
         String pw = password.getText();
-//        String uID = "15627180297";
-//        String pw = "a15627180297";
         //判断账号密码
         JSONObject body = Login.pwLogin(uID,pw);
         if(!body.getString("code").equals("0")) {
