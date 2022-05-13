@@ -91,8 +91,8 @@ public class SmsVerifyCodeServiceImpl implements SmsVerifyCodeService {
     }
 
     private SendSMSResult sendSms(String phone, String signName, String templateCode, String code) throws Exception {
-        String masterSecret = "96d06c0be93ed8dab68ad119";
-        String appKey = "17820b024c2536c76dd257a4";
+        String masterSecret = "";
+        String appKey = "";
         // 调用极光sdk
         SMSClient client = new SMSClient(masterSecret, appKey);
         SMSPayload payload = SMSPayload.newBuilder()
